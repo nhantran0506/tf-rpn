@@ -62,7 +62,12 @@ def randomly_select_xyz_mask(mask, select_xyz):
     sorted_mask = tf.argsort(multiplied_mask, direction="DESCENDING")
     sorted_mask_indices = tf.argsort(sorted_mask)
     selected_mask = tf.less(sorted_mask_indices, tf.expand_dims(select_xyz, 1))
+
+    # Ensure mask and selected_mask have the same shape
+    mask = tf.reshape(mask, tf.shape(selected_mask))
+    
     return tf.logical_and(mask, selected_mask)
+
 
 def rpn_generator(dataset, anchors, hyper_params):
     """Tensorflow data generator for fit method, yielding inputs and outputs.

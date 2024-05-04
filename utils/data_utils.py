@@ -3,7 +3,7 @@ import tensorflow as tf
 import tensorflow_datasets as tfds
 from PIL import Image
 import numpy as np
-
+tfds.disable_progress_bar()
 def preprocessing(image_data, final_height, final_width, apply_augmentation=False, evaluate=False):
     """Image resizing operation handled before batch operations.
     inputs:
