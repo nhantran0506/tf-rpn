@@ -6,7 +6,7 @@ args = io_utils.handle_args()
 if args.handle_gpu:
     io_utils.handle_gpu_compatibility()
 
-batch_size = 8
+batch_size = 16
 epochs = 50
 load_weights = False
 with_voc_2012 = False
@@ -57,7 +57,7 @@ rpn_model_path = io_utils.get_model_path("rpn", backbone)
 if load_weights:
     rpn_model.load_weights(rpn_model_path)
 
-checkpoint_callback = ModelCheckpoint(rpn_model_path, monitor="val_loss", save_best_only=True, save_weights_only=True)
+#checkpoint_callback = ModelCheckpoint(rpn_model_path, monitor="val_loss", save_best_only=True, save_weights_only=True)
 
 step_size_train = train_utils.get_step_size(train_total_items, batch_size)
 step_size_val = train_utils.get_step_size(val_total_items, batch_size)
@@ -66,4 +66,5 @@ rpn_model.fit(rpn_train_feed,
               validation_data=rpn_val_feed,
               validation_steps=step_size_val,
               epochs=epochs,
-              callbacks=[checkpoint_callback])
+              #callbacks=[checkpoint_callback]
+              )
