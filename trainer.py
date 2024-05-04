@@ -36,7 +36,7 @@ labels = data_utils.get_labels(dataset_info)
 hyper_params["total_labels"] = len(labels) + 1
 #
 img_size = hyper_params["img_size"]
-train_data = train_data.map(lambda x : data_utils.preprocessing(x, img_size, img_size, apply_augmentation=True))
+train_data = train_data.map(lambda x : data_utils.preprocessing(x, img_size, img_size, apply_augmentation=False))
 val_data = val_data.map(lambda x : data_utils.preprocessing(x, img_size, img_size))
 
 data_shapes = data_utils.get_data_shapes()
