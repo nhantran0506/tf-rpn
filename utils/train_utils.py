@@ -180,6 +180,6 @@ def reg_loss(*args):
     pos_cond = tf.reduce_any(tf.not_equal(y_true, tf.constant(0.0)), axis=-1)
     pos_mask = tf.cast(pos_cond, dtype=tf.float32)
     #
-    loc_loss = tf.reduce_sum(pos_mask * loss_for_all)
+    loc_loss = tf.reduce_sum(pos_mask * tf.expand_dims(loss_for_all, axis=-1))
     total_pos_bboxes = tf.maximum(1.0, tf.reduce_sum(pos_mask))
     return loc_loss / total_pos_bboxes
