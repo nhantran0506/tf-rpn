@@ -68,3 +68,5 @@ rpn_model.fit(rpn_train_feed,
               epochs=epochs,
               #callbacks=[checkpoint_callback]
               )
+
+rpn_model.save('rpn_model.h5')
